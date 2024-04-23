@@ -152,7 +152,7 @@ def runner():
         print(", and you've hit a ship!" if human_strike_info["is_hit"] else ", but it was water.",
           flush=True)
         if human_strike_info["all_ships_hit"]:
-          end(human_player)
+          end(human_player, computer_player)
           return
         break
       
@@ -266,7 +266,7 @@ def runner():
     time.sleep(0.5)
     print(", which was one of your ships." if computer_strike_info["is_hit"] else ", which was water.", flush=True)
     if computer_strike_info["all_ships_hit"]:
-      end(computer_player)
+      end(computer_player, human_player)
       return
     time.sleep(1)
     print()
@@ -281,15 +281,15 @@ Function for ending the game.
 Parameter(s):
   winner = the winner of the game.
 """
-def end(winner):
+def end(winner, loser):
   time.sleep(1)
   print()
   if winner.name not in ["Hal", "Mr. Roboto", "The Machine"]:
     print(f"Congratulations {winner.name}!")
     time.sleep(1)
-    print(f"You have beat {winner.name}.")
+    print(f"You have beat {loser.name}.")
   else:
-    print(f"Sorry, {winner.name} is victorius.")
+    print(f"Sorry {loser.name}, {winner.name} is victorius.")
     time.sleep(1)
     print("Maybe next time you'll win.")
   
@@ -315,7 +315,7 @@ def end(winner):
     "",
     "Initial release April 2024.",
     "",
-    "This game's repository: ."
+    "This game's repository: github.com/Chen858858/battleship-python-apr-2024 ."
 
   ]
   for line in gg_credits_lines:
